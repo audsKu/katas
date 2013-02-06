@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
+
 KATA_TYPES = {
   :c => { :language => 'coffeescript', :template_name => 'coffeescript', :files => [] },
   :j => { :language => 'javascript', :template_name => 'javascript_qunit', :files => ['index.html'] },
@@ -26,7 +28,8 @@ end
 
 def run_kata
   system "rm -rf #{kata_dir}"
-  system "cp -r templates/#{kata_type[:template_name]} #{kata_dir}"
+  FileUtils.mkdir_p kata_dir
+  system "cp -r templates/#{kata_type[:template_name]}/* #{kata_dir}"
   Dir.chdir kata_dir
   kata_type[:files].each { |file| open file }
   open Dir.getwd
@@ -46,6 +49,10 @@ def args_valid?
 end
 
 def kata_dir
+  "projects/#{kata_dir_name}"
+end
+
+def kata_dir_name
   if kata_type[:language] == 'ruby'
     kata_name
   else
