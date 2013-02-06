@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+KATA_TYPES = {
+  :c => { :language => 'coffeescript', :template_name => 'coffeescript', :files => [] },
+  :j => { :language => 'javascript', :template_name => 'javascript_qunit', :files => ['index.html'] },
+  :rm => { :language => 'ruby', :template_name => 'ruby_minitest', :files => [] },
+  :rr => { :language => 'ruby', :template_name => 'ruby_rspec', :files => [] },
+  :rt => { :language => 'ruby', :template_name => 'ruby_testunit', :files => [] },
+}
+
+HELP_MESSAGE = '
+  kata c  <kata_name>   # Run coffeescript kata (with nodeunit)
+  kata j  <kata_name>   # Run javascript kata (with qunit)
+  kata rm <kata_name>   # Run ruby kata (with minitest)
+  kata rr <kata_name>   # Run ruby kata (with rspec)
+  kata rt <kata_name>   # Run ruby kata (with test-unit)
+'
+
+def main
+  if args_valid?
+    run_kata
+  else
+    puts HELP_MESSAGE
+  end
+end
+
+def run_kata
+  system "rm -rf #{kata_dir}"
+  system "cp -r templates/#{kata_type[:template_name]} #{kata_dir}"
+  Dir.chdir kata_dir
+  kata_type[:files].each { |file| open file }
+  open Dir.getwd
+  exec('watchr watchr.rb') if File.exists?('watchr.rb')
+end
+
+def open(file)
+  if (file.end_with?('.html'))
+    system "open #{file}"
+  else
+    system %(open -a "Sublime Text 2" #{file})
+  end
+end
+
+def args_valid?
+  ARGV.size == 2 && kata_type
+end
+
+def kata_dir
+  if kata_type[:language] == 'ruby'
+    kata_name
+  else
+    kata_type[:language] + '_' + kata_name
+  end
+end
+
+def kata_type
+  KATA_TYPES[ARGV[0].to_sym]
+end
+
+def kata_name
+  ARGV[1]
+end
+
+main
