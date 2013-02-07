@@ -7,17 +7,17 @@ Quickly start Ruby (or Javascript) katas.
 1. Setup:
 
      ```
-     $ bundle install
+     $ bundle 
      ```
 
 2. Get help:
 
      ```
-     $ bundle exec kata help
+     $ kata help
      ```
 
 3. Create a new Ruby project
 
      ```
-     $ bundle exec kata rm fizz_buzz
+     $ kata rm fizz_buzz
      ```
