@@ -13,11 +13,11 @@ Quickly start Ruby (or Javascript) katas.
 2. Get help:
 
      ```
-     $ kata help
+     $ kata
      ```
 
-3. Create a new Ruby project
+3. Create a new Ruby project:
 
      ```
-     $ kata rm fizz_buzz
+     $ kata ruby:minitest <your_project_name_here>
      ```

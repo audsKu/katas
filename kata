@@ -3,19 +3,19 @@
 require 'fileutils'
 
 KATA_TYPES = {
-  :c => { :language => 'coffeescript', :template_name => 'coffeescript', :files => [] },
-  :j => { :language => 'javascript', :template_name => 'javascript_qunit', :files => ['index.html'] },
-  :rm => { :language => 'ruby', :template_name => 'ruby_minitest', :files => [] },
-  :rr => { :language => 'ruby', :template_name => 'ruby_rspec', :files => [] },
-  :rt => { :language => 'ruby', :template_name => 'ruby_testunit', :files => [] },
+  'coffeescript' => { :language => 'coffeescript', :template_name => 'coffeescript', :files => [] },
+  'javascript' => { :language => 'javascript', :template_name => 'javascript_qunit', :files => ['index.html'] },
+  'ruby:minitest' => { :language => 'ruby', :template_name => 'ruby_minitest', :files => [] },
+  'ruby:rspec' => { :language => 'ruby', :template_name => 'ruby_rspec', :files => [] },
+  'ruby:testunit' => { :language => 'ruby', :template_name => 'ruby_testunit', :files => [] },
 }
 
 HELP_MESSAGE = '
-  kata c  <kata_name>   # Run coffeescript kata (with nodeunit)
-  kata j  <kata_name>   # Run javascript kata (with qunit)
-  kata rm <kata_name>   # Run ruby kata (with minitest)
-  kata rr <kata_name>   # Run ruby kata (with rspec)
-  kata rt <kata_name>   # Run ruby kata (with test-unit)
+  kata coffeescript <kata_name>    # Run coffeescript kata (with nodeunit)
+  kata javascript  <kata_name>     # Run javascript kata (with qunit)
+  kata ruby:minitest <kata_name>   # Run ruby kata (with minitest)
+  kata ruby:rspec <kata_name>      # Run ruby kata (with rspec)
+  kata ruby:testunit <kata_name>   # Run ruby kata (with test-unit)
 '
 
 def main
@@ -61,7 +61,7 @@ def kata_dir_name
 end
 
 def kata_type
-  KATA_TYPES[ARGV[0].to_sym]
+  KATA_TYPES[ARGV[0]]
 end
 
 def kata_name
