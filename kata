@@ -33,7 +33,7 @@ def run_kata
   Dir.chdir kata_dir
   kata_type[:files].each { |file| open file }
   open Dir.getwd
-  exec('watchr watchr.rb') if File.exists?('watchr.rb')
+  exec('observr observr.rb') if File.exists?('observr.rb')
 end
 
 def open(file)

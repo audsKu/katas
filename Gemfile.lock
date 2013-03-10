@@ -3,12 +3,12 @@ GEM
   specs:
     mynyml-redgreen (0.7.1)
       term-ansicolor (>= 1.0.4)
+    observr (1.0.5)
     term-ansicolor (1.0.7)
-    watchr (0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   mynyml-redgreen
-  watchr
+  observr
