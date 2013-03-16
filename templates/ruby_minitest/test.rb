@@ -1,5 +1,4 @@
-require_relative 'test_helper'
-require_relative 'code'
+require 'code'
 
 describe Foo do
   it 'works' do
