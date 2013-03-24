@@ -1,29 +1,9 @@
-# --------------------------------------------------
-# Rules
-# --------------------------------------------------
-watch( '.*\.rb' ) {|md| run_all_tests }
- 
-# --------------------------------------------------
-# Helpers
-# --------------------------------------------------
-def run(cmd)
-  puts(cmd)
-  system(cmd)
-end
- 
-def run_all_tests
-  run("ruby test.rb") 
-end
- 
-# --------------------------------------------------
-# Signal Handling
-# --------------------------------------------------
+watch('.*\.rb') { |_| run_all_tests }
 
-# Ctrl-\
-Signal.trap("QUIT") do
-  puts " --- Running all tests ---\n\n"
-  run_all_tests
+def run_all_tests
+  puts "\n--- Running all tests ---\n"
+  system 'rake test'
 end
- 
-# Ctrl-C
-Signal.trap("INT") { abort("\n") }
+
+Signal.trap('QUIT') { run_all_tests } # Ctrl-\
+Signal.trap('INT') { abort("\n") } # Ctrl-C

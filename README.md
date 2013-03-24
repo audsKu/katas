@@ -32,5 +32,5 @@ Quickly start Ruby (or Javascript) katas.
 5. Create a new Ruby project:
 
      ```
-     $ kata ruby:minitest <your_project_name_here>
+     $ kata ruby <your_project_name_here>
      ```

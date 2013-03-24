@@ -1,8 +1,7 @@
-require_relative "test_helper"
-require_relative "code"
+require 'code'
 
-class TestFoo < Test::Unit::TestCase
-  def test_simple
-    assert_equal "John Doe", "John Doe"
+class FooTest < Test::Unit::TestCase
+  def test_equality
+    assert_equal 'John Doe', 'John Doe'
   end
 end

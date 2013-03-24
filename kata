@@ -5,17 +5,13 @@ require 'fileutils'
 KATA_TYPES = {
   'coffeescript' => { :language => 'coffeescript', :template_name => 'coffeescript', :files => [] },
   'javascript' => { :language => 'javascript', :template_name => 'javascript_qunit', :files => ['index.html'] },
-  'ruby:minitest' => { :language => 'ruby', :template_name => 'ruby_minitest', :files => [] },
-  'ruby:rspec' => { :language => 'ruby', :template_name => 'ruby_rspec', :files => [] },
-  'ruby:testunit' => { :language => 'ruby', :template_name => 'ruby_testunit', :files => [] },
+  'ruby' => { :language => 'ruby', :template_name => 'ruby_testunit', :files => [] }
 }
 
 HELP_MESSAGE = '
-  kata coffeescript <kata_name>    # Run coffeescript kata (with nodeunit)
-  kata javascript  <kata_name>     # Run javascript kata (with qunit)
-  kata ruby:minitest <kata_name>   # Run ruby kata (with minitest)
-  kata ruby:rspec <kata_name>      # Run ruby kata (with rspec)
-  kata ruby:testunit <kata_name>   # Run ruby kata (with test-unit)
+  kata coffeescript <kata_name>  # Run coffeescript kata (with nodeunit)
+  kata javascript <kata_name>    # Run javascript kata (with qunit)
+  kata ruby <kata_name>          # Run ruby kata (with test-unit)
 '
 
 def main
@@ -37,7 +33,7 @@ def run_kata
   Dir.chdir kata_dir
   kata_type[:files].each { |file| open file }
   open Dir.getwd
-  exec('observr observr.rb') if File.exists?('observr.rb')
+  exec('bundle exec observr observr.rb') if File.exists?('observr.rb')
 end
 
 def kata_dir
