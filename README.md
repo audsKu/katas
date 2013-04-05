@@ -14,6 +14,7 @@ Quickly start Ruby (or Javascript) katas.
 2. Install gems:
 
      ```
+     $ cd katas
      $ bundle
      ```
 
